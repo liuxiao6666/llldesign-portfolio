@@ -1,0 +1,682 @@
+<html lang="zh-CN">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>设计师作品集</title>
+    <!-- Tailwind CSS -->
+    <script src="https://cdn.tailwindcss.com"></script>
+    <!-- Font Awesome -->
+    <link href="https://cdn.jsdelivr.net/npm/font-awesome@4.7.0/css/font-awesome.min.css" rel="stylesheet">
+    
+    <script>
+        tailwind.config = {
+            theme: {
+                extend: {
+                    colors: {
+                        primary: '#111111',
+                        secondary: '#333333',
+                        accent: '#0066ff',
+                        light: '#f5f5f5',
+                    },
+                    fontFamily: {
+                        sans: ['Inter', 'system-ui', 'sans-serif'],
+                    }
+                }
+            }
+        }
+    </script>
+    
+    <style type="text/tailwindcss">
+        @layer utilities {
+            .hover-scale {
+                @apply hover:scale-105 transition-transform duration-300;
+            }
+            .card-shadow {
+                box-shadow: 0 4px 20px rgba(0, 0, 0, 0.08);
+            }
+        }
+    </style>
+    
+    <style>
+        /* 自定义滚动条 */
+        ::-webkit-scrollbar {
+            width: 8px;
+        }
+        ::-webkit-scrollbar-track {
+            background: #f1f1f1;
+        }
+        ::-webkit-scrollbar-thumb {
+            background: #888;
+            border-radius: 4px;
+        }
+        ::-webkit-scrollbar-thumb:hover {
+            background: #555;
+        }
+        
+        /* 作品卡片悬停效果 */
+        .work-card {
+            transition: all 0.3s ease;
+        }
+        
+        .work-card:hover .work-overlay {
+            opacity: 1;
+        }
+        
+        .work-overlay {
+            opacity: 0;
+            transition: opacity 0.3s ease;
+        }
+        
+        /* 导航栏固定效果 */
+        .navbar-fixed {
+            position: fixed;
+            top: 0;
+            left: 0;
+            width: 100%;
+            z-index: 50;
+            transition: background-color 0.3s ease, box-shadow 0.3s ease;
+        }
+
+        /* 详情图卡片样式 - 图片不充满容器 */
+        .detail-card .img-container {
+            padding: 1rem; /* 图片内边距 */
+            background-color: #f9f9f9; /* 背景色 */
+            display: flex;
+            align-items: center;
+            justify-content: center;
+        }
+        
+        .detail-card img {
+            max-height: 34rem; /* 图片最大高度 */
+            width: auto; /* 宽度自适应 */
+            max-width: 100%; /* 不超过容器宽度 */
+            object-fit: contain; /* 保持图片比例，不拉伸 */
+        }
+    </style>
+</head>
+<body class="bg-white text-primary font-sans">
+    <!-- 导航栏 -->
+    <nav id="navbar" class="navbar-fixed bg-white bg-opacity-95 py-4 shadow-sm">
+        <div class="container mx-auto px-4 md:px-8">
+            <div class="flex justify-between items-center">
+                <a href="#" class="text-2xl font-bold text-primary">设计师作品集</a>
+                
+                <!-- 桌面导航 -->
+                <div class="hidden md:flex ml-auto space-x-4">
+                    <a href="#works" class="text-secondary hover:text-accent transition-colors">全部</a>
+                    <a href="#poster" class="text-secondary hover:text-accent transition-colors">海报设计</a>
+                    <a href="#live-bg" class="text-secondary hover:text-accent transition-colors">直播间背景</a>
+                    <a href="#main-image" class="text-secondary hover:text-accent transition-colors">主图设计</a>
+                    <a href="#douyin" class="text-secondary hover:text-accent transition-colors">抖音图文</a>
+                    <a href="#detail-image" class="text-secondary hover:text-accent transition-colors">详情图</a>
+                </div>
+                
+                <!-- 移动端菜单按钮 -->
+                <button id="menu-toggle" class="md:hidden ml-auto text-primary focus:outline-none">
+                    <i class="fa fa-bars text-xl"></i>
+                </button>
+            </div>
+        </div>
+        
+        <!-- 移动端导航菜单 -->
+        <div id="mobile-menu" class="md:hidden bg-white hidden absolute top-full left-0 w-full border-t border-gray-100">
+            <div class="container mx-auto px-4 py-4">
+                <a href="#works" class="block py-2 text-secondary hover:text-accent">全部</a>
+                <a href="#poster" class="block py-2 text-secondary hover:text-accent">海报设计</a>
+                <a href="#live-bg" class="block py-2 text-secondary hover:text-accent">直播间背景</a>
+                <a href="#main-image" class="block py-2 text-secondary hover:text-accent">主图设计</a>
+                <a href="#douyin" class="block py-2 text-secondary hover:text-accent">抖音图文</a>
+                <a href="#detail-image" class="block py-2 text-secondary hover:text-accent">详情图</a>
+            </div>
+        </div>
+    </nav>
+
+    <!-- 封面 -->
+    <section class="h-screen flex items-center justify-center bg-gray-100">
+        <h1 class="text-5xl md:text-7xl font-bold text-primary">设计作品集</h1>
+    </section>
+
+    <!-- 主要内容 -->
+    <main class="pt-20">
+
+        <!-- 海报设计 -->
+        <section id="poster" class="py-16 bg-gray-50">
+            <div class="container mx-auto px-4">
+                <h2 class="text-2xl md:text-3xl font-bold mb-8 text-center">海报设计</h2>
+                <div class="grid grid-cols-1 sm:grid-cols-2 md:grid-cols-4 lg:grid-cols-4 xl:grid-cols-4 gap-4">
+                    <!-- 海报设计1 -->
+                    <div class="work-card bg-white rounded-lg overflow-hidden shadow-sm group">
+                        <div class="relative overflow-hidden">
+                            <img src="https://p3-flow-imagex-sign.byteimg.com/tos-cn-i-a9rns2rl98/rc/pc/code_assistant/29449b1a007b4221921bce21be1e4dd2~tplv-a9rns2rl98-image.image?rcl=20251013163918FB6EAC6B654496E25F85&amp;rk3s=8e244e95&amp;rrcfp=2609e108&amp;x-expires=1760949563&amp;x-signature=B6ka6pttP6CFMPh%2FXj8k6xP63i4%3D" alt="设计作品" class="w-full h-48 object-cover transition-transform duration-500 group-hover:scale-110">
+                        </div>
+                        <div class="p-3">
+                            <h3 class="text-md font-semibold mb-1">海报设计 1</h3>
+                            <p class="text-gray-600 text-xs">作品描述</p>
+                        </div>
+                    </div>
+                    
+                    <!-- 海报设计2 -->
+                    <div class="work-card bg-white rounded-lg overflow-hidden shadow-sm group">
+                        <div class="relative overflow-hidden">
+                            <img src="https://p3-flow-imagex-sign.byteimg.com/tos-cn-i-a9rns2rl98/rc/pc/code_assistant/520c2cb70ce74a5e873ecc213be07d49~tplv-a9rns2rl98-image.image?rcl=20251013162436B2ED504F4E124AF921CD&amp;rk3s=8e244e95&amp;rrcfp=2609e108&amp;x-expires=1760948681&amp;x-signature=mHPZrZeJjztdaF94jLEBa09ZNyE%3D" alt="设计作品" class="w-full h-48 object-cover transition-transform duration-500 group-hover:scale-110">
+                        </div>
+                        <div class="p-3">
+                            <h3 class="text-md font-semibold mb-1">海报设计 2</h3>
+                            <p class="text-gray-600 text-xs">作品描述</p>
+                        </div>
+                    </div>
+                    
+                    <!-- 海报设计3 -->
+                    <div class="work-card bg-white rounded-lg overflow-hidden shadow-sm group">
+                        <div class="relative overflow-hidden">
+                            <img src="https://p3-flow-imagex-sign.byteimg.com/tos-cn-i-a9rns2rl98/rc/pc/code_assistant/574e47a1407b4221921bce21be1e4dd2~tplv-a9rns2rl98-image.image?rcl=20251013163918FB6EAC6B654496E25F85&amp;rk3s=8e244e95&amp;rrcfp=2609e108&amp;x-expires=1760949563&amp;x-signature=B6ka6pttP6CFMPh%2FXj8k6xP63i4%3D" alt="设计作品" class="w-full h-48 object-cover transition-transform duration-500 group-hover:scale-110">
+                        </div>
+                        <div class="p-3">
+                            <h3 class="text-md font-semibold mb-1">海报设计 3</h3>
+                            <p class="text-gray-600 text-xs">作品描述</p>
+                        </div>
+                    </div>
+                    
+                    <!-- 海报设计4 -->
+                    <div class="work-card bg-white rounded-lg overflow-hidden shadow-sm group">
+                        <div class="relative overflow-hidden">
+                            <img src="https://p3-flow-imagex-sign.byteimg.com/tos-cn-i-a9rns2rl98/rc/pc/code_assistant/520c2cb70ce74a5e873ecc213be07d49~tplv-a9rns2rl98-image.image?rcl=20251013162436B2ED504F4E124AF921CD&amp;rk3s=8e244e95&amp;rrcfp=2609e108&amp;x-expires=1760948681&amp;x-signature=mHPZrZeJjztdaF94jLEBa09ZNyE%3D" alt="设计作品" class="w-full h-48 object-cover transition-transform duration-500 group-hover:scale-110">
+                        </div>
+                        <div class="p-3">
+                            <h3 class="text-md font-semibold mb-1">海报设计 4</h3>
+                            <p class="text-gray-600 text-xs">作品描述</p>
+                        </div>
+                    </div>
+                    
+                    <!-- 海报设计5 -->
+                    <div class="work-card bg-white rounded-lg overflow-hidden shadow-sm group">
+                        <div class="relative overflow-hidden">
+                            <img src="https://p3-flow-imagex-sign.byteimg.com/tos-cn-i-a9rns2rl98/rc/pc/code_assistant/574e47a1407b4221921bce21be1e4dd2~tplv-a9rns2rl98-image.image?rcl=20251013163918FB6EAC6B654496E25F85&amp;rk3s=8e244e95&amp;rrcfp=2609e108&amp;x-expires=1760949563&amp;x-signature=B6ka6pttP6CFMPh%2FXj8k6xP63i4%3D" alt="设计作品" class="w-full h-48 object-cover transition-transform duration-500 group-hover:scale-110">
+                        </div>
+                        <div class="p-3">
+                            <h3 class="text-md font-semibold mb-1">海报设计 5</h3>
+                            <p class="text-gray-600 text-xs">作品描述</p>
+                        </div>
+                    </div>
+                    
+                    <!-- 海报设计6 -->
+                    <div class="work-card bg-white rounded-lg overflow-hidden shadow-sm group">
+                        <div class="relative overflow-hidden">
+                            <img src="https://p3-flow-imagex-sign.byteimg.com/tos-cn-i-a9rns2rl98/rc/pc/code_assistant/90032b8a3adf4b169b1957cdb1e6afaf~tplv-a9rns2rl98-image.image?rcl=20251013164250F4993424CAEF794F6D63&amp;rk3s=8e244e95&amp;rrcfp=2609e108&amp;x-expires=1760949774&amp;x-signature=eeDe93hSK4rMUlCMb%2Bw0fxqLCuM%3D" alt="设计作品" class="w-full h-48 object-cover transition-transform duration-500 group-hover:scale-110">
+                        </div>
+                        <div class="p-3">
+                            <h3 class="text-md font-semibold mb-1">海报设计 6</h3>
+                            <p class="text-gray-600 text-xs">作品描述</p>
+                        </div>
+                    </div>
+                    
+                    <!-- 海报设计7 -->
+                    <div class="work-card bg-white rounded-lg overflow-hidden shadow-sm group">
+                        <div class="relative overflow-hidden">
+                            <img src="https://p9-flow-imagex-sign.byteimg.com/tos-cn-i-a9rns2rl98/rc/pc/code_assistant/98c01d1c61c645778cdcb4e529a8882e~tplv-a9rns2rl98-image.image?rcl=20251013164023970D359F3CD4DADE7A59&amp;rk3s=8e244e95&amp;rrcfp=2609e108&amp;x-expires=1760949627&amp;x-signature=zU77Hv%2BXz8IMMwolvvRh7iQmasM%3D" alt="设计作品" class="w-full h-48 object-cover transition-transform duration-500 group-hover:scale-110">
+                        </div>
+                        <div class="p-3">
+                            <h3 class="text-md font-semibold mb-1">海报设计 7</h3>
+                            <p class="text-gray-600 text-xs">作品描述</p>
+                        </div>
+                    </div>
+                    
+                    <!-- 海报设计8 -->
+                    <div class="work-card bg-white rounded-lg overflow-hidden shadow-sm group">
+                        <div class="relative overflow-hidden">
+                            <img src="https://p3-flow-imagex-sign.byteimg.com/tos-cn-i-a9rns2rl98/rc/pc/super_tool/19abb3f8a92e47949319b2c891001bc3~tplv-a9rns2rl98-image.image?rcl=20251011114612D6F40923774973B0CC79&amp;rk3s=8e244e95&amp;rrcfp=f06b921b&amp;x-expires=1762746398&amp;x-signature=rZWgL3A83ZsR8JdE68SIeiWy%2FbI%3D" alt="设计作品" class="w-full h-48 object-cover transition-transform duration-500 group-hover:scale-110">
+                        </div>
+                        <div class="p-3">
+                            <h3 class="text-md font-semibold mb-1">海报设计 8</h3>
+                            <p class="text-gray-600 text-xs">作品描述</p>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </section>
+
+        <!-- 直播间背景图设计 -->
+        <section id="live-bg" class="py-16">
+            <div class="container mx-auto px-4">
+                <h2 class="text-2xl md:text-3xl font-bold mb-8 text-center">直播间背景图设计</h2>
+                <div class="grid grid-cols-1 sm:grid-cols-2 md:grid-cols-4 lg:grid-cols-4 xl:grid-cols-4 gap-4">
+                    <!-- 直播间背景1 -->
+                    <div class="work-card bg-white rounded-lg overflow-hidden shadow-sm group">
+                        <div class="relative overflow-hidden">
+                            <img src="https://p3-flow-imagex-sign.byteimg.com/tos-cn-i-a9rns2rl98/rc/pc/code_assistant/29449b1a007b4221921bce21be1e4dd2~tplv-a9rns2rl98-image.image?rcl=20251013163918FB6EAC6B654496E25F85&amp;rk3s=8e244e95&amp;rrcfp=2609e108&amp;x-expires=1760949563&amp;x-signature=B6ka6pttP6CFMPh%2FXj8k6xP63i4%3D" alt="直播间背景" class="w-full h-48 object-cover transition-transform duration-500 group-hover:scale-110">
+                        </div>
+                        <div class="p-3">
+                            <h3 class="text-md font-semibold mb-1">直播间背景 1</h3>
+                            <p class="text-gray-600 text-xs">作品描述</p>
+                        </div>
+                    </div>
+                    
+                    <!-- 直播间背景2 -->
+                    <div class="work-card bg-white rounded-lg overflow-hidden shadow-sm group">
+                        <div class="relative overflow-hidden">
+                            <img src="https://p3-flow-imagex-sign.byteimg.com/tos-cn-i-a9rns2rl98/rc/pc/code_assistant/520c2cb70ce74a5e873ecc213be07d49~tplv-a9rns2rl98-image.image?rcl=20251013162436B2ED504F4E124AF921CD&amp;rk3s=8e244e95&amp;rrcfp=2609e108&amp;x-expires=1760948681&amp;x-signature=mHPZrZeJjztdaF94jLEBa09ZNyE%3D" alt="直播间背景" class="w-full h-48 object-cover transition-transform duration-500 group-hover:scale-110">
+                        </div>
+                        <div class="p-3">
+                            <h3 class="text-md font-semibold mb-1">直播间背景 2</h3>
+                            <p class="text-gray-600 text-xs">作品描述</p>
+                        </div>
+                    </div>
+                    
+                    <!-- 直播间背景3 -->
+                    <div class="work-card bg-white rounded-lg overflow-hidden shadow-sm group">
+                        <div class="relative overflow-hidden">
+                            <img src="https://p3-flow-imagex-sign.byteimg.com/tos-cn-i-a9rns2rl98/rc/pc/code_assistant/574e47a1407b4221921bce21be1e4dd2~tplv-a9rns2rl98-image.image?rcl=20251013163918FB6EAC6B654496E25F85&amp;rk3s=8e244e95&amp;rrcfp=2609e108&amp;x-expires=1760949563&amp;x-signature=B6ka6pttP6CFMPh%2FXj8k6xP63i4%3D" alt="直播间背景" class="w-full h-48 object-cover transition-transform duration-500 group-hover:scale-110">
+                        </div>
+                        <div class="p-3">
+                            <h3 class="text-md font-semibold mb-1">直播间背景 3</h3>
+                            <p class="text-gray-600 text-xs">作品描述</p>
+                        </div>
+                    </div>
+                    
+                    <!-- 直播间背景4 -->
+                    <div class="work-card bg-white rounded-lg overflow-hidden shadow-sm group">
+                        <div class="relative overflow-hidden">
+                            <img src="https://p3-flow-imagex-sign.byteimg.com/tos-cn-i-a9rns2rl98/rc/pc/code_assistant/90032b8a3adf4b169b1957cdb1e6afaf~tplv-a9rns2rl98-image.image?rcl=20251013164250F4993424CAEF794F6D63&amp;rk3s=8e244e95&amp;rrcfp=2609e108&amp;x-expires=1760949774&amp;x-signature=eeDe93hSK4rMUlCMb%2Bw0fxqLCuM%3D" alt="直播间背景" class="w-full h-48 object-cover transition-transform duration-500 group-hover:scale-110">
+                        </div>
+                        <div class="p-3">
+                            <h3 class="text-md font-semibold mb-1">直播间背景 4</h3>
+                            <p class="text-gray-600 text-xs">作品描述</p>
+                        </div>
+                    </div>
+                    
+                    <!-- 直播间背景5 -->
+                    <div class="work-card bg-white rounded-lg overflow-hidden shadow-sm group">
+                        <div class="relative overflow-hidden">
+                            <img src="https://p9-flow-imagex-sign.byteimg.com/tos-cn-i-a9rns2rl98/rc/pc/code_assistant/98c01d1c61c645778cdcb4e529a8882e~tplv-a9rns2rl98-image.image?rcl=20251013164023970D359F3CD4DADE7A59&amp;rk3s=8e244e95&amp;rrcfp=2609e108&amp;x-expires=1760949627&amp;x-signature=zU77Hv%2BXz8IMMwolvvRh7iQmasM%3D" alt="直播间背景" class="w-full h-48 object-cover transition-transform duration-500 group-hover:scale-110">
+                        </div>
+                        <div class="p-3">
+                            <h3 class="text-md font-semibold mb-1">直播间背景 5</h3>
+                            <p class="text-gray-600 text-xs">作品描述</p>
+                        </div>
+                    </div>
+                    
+                    <!-- 直播间背景6 -->
+                    <div class="work-card bg-white rounded-lg overflow-hidden shadow-sm group">
+                        <div class="relative overflow-hidden">
+                            <img src="https://p3-flow-imagex-sign.byteimg.com/tos-cn-i-a9rns2rl98/rc/pc/super_tool/19abb3f8a92e47949319b2c891001bc3~tplv-a9rns2rl98-image.image?rcl=20251011114612D6F40923774973B0CC79&amp;rk3s=8e244e95&amp;rrcfp=f06b921b&amp;x-expires=1762746398&amp;x-signature=rZWgL3A83ZsR8JdE68SIeiWy%2FbI%3D" alt="直播间背景" class="w-full h-48 object-cover transition-transform duration-500 group-hover:scale-110">
+                        </div>
+                        <div class="p-3">
+                            <h3 class="text-md font-semibold mb-1">直播间背景 6</h3>
+                            <p class="text-gray-600 text-xs">作品描述</p>
+                        </div>
+                    </div>
+                    
+                    <!-- 直播间背景7 -->
+                    <div class="work-card bg-white rounded-lg overflow-hidden shadow-sm group">
+                        <div class="relative overflow-hidden">
+                            <img src="https://p3-flow-imagex-sign.byteimg.com/tos-cn-i-a9rns2rl98/rc/pc/code_assistant/29449b1a007b4221921bce21be1e4dd2~tplv-a9rns2rl98-image.image?rcl=20251013163918FB6EAC6B654496E25F85&amp;rk3s=8e244e95&amp;rrcfp=2609e108&amp;x-expires=1760949563&amp;x-signature=B6ka6pttP6CFMPh%2FXj8k6xP63i4%3D" alt="直播间背景" class="w-full h-48 object-cover transition-transform duration-500 group-hover:scale-110">
+                        </div>
+                        <div class="p-3">
+                            <h3 class="text-md font-semibold mb-1">直播间背景 7</h3>
+                            <p class="text-gray-600 text-xs">作品描述</p>
+                        </div>
+                    </div>
+                    
+                    <!-- 直播间背景8 -->
+                    <div class="work-card bg-white rounded-lg overflow-hidden shadow-sm group">
+                        <div class="relative overflow-hidden">
+                            <img src="https://p3-flow-imagex-sign.byteimg.com/tos-cn-i-a9rns2rl98/rc/pc/code_assistant/520c2cb70ce74a5e873ecc213be07d49~tplv-a9rns2rl98-image.image?rcl=20251013162436B2ED504F4E124AF921CD&amp;rk3s=8e244e95&amp;rrcfp=2609e108&amp;x-expires=1760948681&amp;x-signature=mHPZrZeJjztdaF94jLEBa09ZNyE%3D" alt="直播间背景" class="w-full h-48 object-cover transition-transform duration-500 group-hover:scale-110">
+                        </div>
+                        <div class="p-3">
+                            <h3 class="text-md font-semibold mb-1">直播间背景 8</h3>
+                            <p class="text-gray-600 text-xs">作品描述</p>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </section>
+
+        <!-- 主图设计 -->
+        <section id="main-image" class="py-16 bg-gray-50">
+            <div class="container mx-auto px-4">
+                <h2 class="text-2xl md:text-3xl font-bold mb-8 text-center">主图设计</h2>
+                <div class="grid grid-cols-1 sm:grid-cols-2 md:grid-cols-4 lg:grid-cols-4 xl:grid-cols-4 gap-4">
+                    <!-- 主图设计1 -->
+                    <div class="work-card bg-white rounded-lg overflow-hidden shadow-sm group">
+                        <div class="relative overflow-hidden">
+                            <img src="https://p3-flow-imagex-sign.byteimg.com/tos-cn-i-a9rns2rl98/rc/pc/code_assistant/29449b1a007b4221921bce21be1e4dd2~tplv-a9rns2rl98-image.image?rcl=20251013163918FB6EAC6B654496E25F85&amp;rk3s=8e244e95&amp;rrcfp=2609e108&amp;x-expires=1760949563&amp;x-signature=B6ka6pttP6CFMPh%2FXj8k6xP63i4%3D" alt="主图设计" class="w-full h-48 object-cover transition-transform duration-500 group-hover:scale-110">
+                        </div>
+                        <div class="p-3">
+                            <h3 class="text-md font-semibold mb-1">主图设计 1</h3>
+                            <p class="text-gray-600 text-xs">作品描述</p>
+                        </div>
+                    </div>
+                    
+                    <!-- 主图设计2 -->
+                    <div class="work-card bg-white rounded-lg overflow-hidden shadow-sm group">
+                        <div class="relative overflow-hidden">
+                            <img src="https://p3-flow-imagex-sign.byteimg.com/tos-cn-i-a9rns2rl98/rc/pc/code_assistant/520c2cb70ce74a5e873ecc213be07d49~tplv-a9rns2rl98-image.image?rcl=20251013162436B2ED504F4E124AF921CD&amp;rk3s=8e244e95&amp;rrcfp=2609e108&amp;x-expires=1760948681&amp;x-signature=mHPZrZeJjztdaF94jLEBa09ZNyE%3D" alt="主图设计" class="w-full h-48 object-cover transition-transform duration-500 group-hover:scale-110">
+                        </div>
+                        <div class="p-3">
+                            <h3 class="text-md font-semibold mb-1">主图设计 2</h3>
+                            <p class="text-gray-600 text-xs">作品描述</p>
+                        </div>
+                    </div>
+                    
+                    <!-- 主图设计3 -->
+                    <div class="work-card bg-white rounded-lg overflow-hidden shadow-sm group">
+                        <div class="relative overflow-hidden">
+                            <img src="https://p3-flow-imagex-sign.byteimg.com/tos-cn-i-a9rns2rl98/rc/pc/code_assistant/574e47a1407b4221921bce21be1e4dd2~tplv-a9rns2rl98-image.image?rcl=20251013163918FB6EAC6B654496E25F85&amp;rk3s=8e244e95&amp;rrcfp=2609e108&amp;x-expires=1760949563&amp;x-signature=B6ka6pttP6CFMPh%2FXj8k6xP63i4%3D" alt="主图设计" class="w-full h-48 object-cover transition-transform duration-500 group-hover:scale-110">
+                        </div>
+                        <div class="p-3">
+                            <h3 class="text-md font-semibold mb-1">主图设计 3</h3>
+                            <p class="text-gray-600 text-xs">作品描述</p>
+                        </div>
+                    </div>
+                    
+                    <!-- 主图设计4 -->
+                    <div class="work-card bg-white rounded-lg overflow-hidden shadow-sm group">
+                        <div class="relative overflow-hidden">
+                            <img src="https://p3-flow-imagex-sign.byteimg.com/tos-cn-i-a9rns2rl98/rc/pc/code_assistant/90032b8a3adf4b169b1957cdb1e6afaf~tplv-a9rns2rl98-image.image?rcl=20251013164250F4993424CAEF794F6D63&amp;rk3s=8e244e95&amp;rrcfp=2609e108&amp;x-expires=1760949774&amp;x-signature=eeDe93hSK4rMUlCMb%2Bw0fxqLCuM%3D" alt="主图设计" class="w-full h-48 object-cover transition-transform duration-500 group-hover:scale-110">
+                        </div>
+                        <div class="p-3">
+                            <h3 class="text-md font-semibold mb-1">主图设计 4</h3>
+                            <p class="text-gray-600 text-xs">作品描述</p>
+                        </div>
+                    </div>
+                    
+                    <!-- 主图设计5 -->
+                    <div class="work-card bg-white rounded-lg overflow-hidden shadow-sm group">
+                        <div class="relative overflow-hidden">
+                            <img src="https://p9-flow-imagex-sign.byteimg.com/tos-cn-i-a9rns2rl98/rc/pc/code_assistant/98c01d1c61c645778cdcb4e529a8882e~tplv-a9rns2rl98-image.image?rcl=20251013164023970D359F3CD4DADE7A59&amp;rk3s=8e244e95&amp;rrcfp=2609e108&amp;x-expires=1760949627&amp;x-signature=zU77Hv%2BXz8IMMwolvvRh7iQmasM%3D" alt="主图设计" class="w-full h-48 object-cover transition-transform duration-500 group-hover:scale-110">
+                        </div>
+                        <div class="p-3">
+                            <h3 class="text-md font-semibold mb-1">主图设计 5</h3>
+                            <p class="text-gray-600 text-xs">作品描述</p>
+                        </div>
+                    </div>
+                    
+                    <!-- 主图设计6 -->
+                    <div class="work-card bg-white rounded-lg overflow-hidden shadow-sm group">
+                        <div class="relative overflow-hidden">
+                            <img src="https://p3-flow-imagex-sign.byteimg.com/tos-cn-i-a9rns2rl98/rc/pc/super_tool/19abb3f8a92e47949319b2c891001bc3~tplv-a9rns2rl98-image.image?rcl=20251011114612D6F40923774973B0CC79&amp;rk3s=8e244e95&amp;rrcfp=f06b921b&amp;x-expires=1762746398&amp;x-signature=rZWgL3A83ZsR8JdE68SIeiWy%2FbI%3D" alt="主图设计" class="w-full h-48 object-cover transition-transform duration-500 group-hover:scale-110">
+                        </div>
+                        <div class="p-3">
+                            <h3 class="text-md font-semibold mb-1">主图设计 6</h3>
+                            <p class="text-gray-600 text-xs">作品描述</p>
+                        </div>
+                    </div>
+                    
+                    <!-- 主图设计7 -->
+                    <div class="work-card bg-white rounded-lg overflow-hidden shadow-sm group">
+                        <div class="relative overflow-hidden">
+                            <img src="https://p3-flow-imagex-sign.byteimg.com/tos-cn-i-a9rns2rl98/rc/pc/code_assistant/29449b1a007b4221921bce21be1e4dd2~tplv-a9rns2rl98-image.image?rcl=20251013163918FB6EAC6B654496E25F85&amp;rk3s=8e244e95&amp;rrcfp=2609e108&amp;x-expires=1760949563&amp;x-signature=B6ka6pttP6CFMPh%2FXj8k6xP63i4%3D" alt="主图设计" class="w-full h-48 object-cover transition-transform duration-500 group-hover:scale-110">
+                        </div>
+                        <div class="p-3">
+                            <h3 class="text-md font-semibold mb-1">主图设计 7</h3>
+                            <p class="text-gray-600 text-xs">作品描述</p>
+                        </div>
+                    </div>
+                    
+                    <!-- 主图设计8 -->
+                    <div class="work-card bg-white rounded-lg overflow-hidden shadow-sm group">
+                        <div class="relative overflow-hidden">
+                            <img src="https://p3-flow-imagex-sign.byteimg.com/tos-cn-i-a9rns2rl98/rc/pc/code_assistant/520c2cb70ce74a5e873ecc213be07d49~tplv-a9rns2rl98-image.image?rcl=20251013162436B2ED504F4E124AF921CD&amp;rk3s=8e244e95&amp;rrcfp=2609e108&amp;x-expires=1760948681&amp;x-signature=mHPZrZeJjztdaF94jLEBa09ZNyE%3D" alt="主图设计" class="w-full h-48 object-cover transition-transform duration-500 group-hover:scale-110">
+                        </div>
+                        <div class="p-3">
+                            <h3 class="text-md font-semibold mb-1">主图设计 8</h3>
+                            <p class="text-gray-600 text-xs">作品描述</p>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </section>
+
+        <!-- 抖音图文设计 -->
+        <section id="douyin" class="py-16 bg-gray-50">
+            <div class="container mx-auto px-4">
+                <h2 class="text-2xl md:text-3xl font-bold mb-8 text-center">抖音图文设计</h2>
+                <div class="grid grid-cols-1 sm:grid-cols-2 md:grid-cols-4 lg:grid-cols-4 xl:grid-cols-4 gap-4">
+                    <!-- 抖音图文设计1 -->
+                    <div class="work-card bg-white rounded-lg overflow-hidden shadow-sm group">
+                        <div class="relative overflow-hidden">
+                            <img src="https://p9-flow-imagex-sign.byteimg.com/tos-cn-i-a9rns2rl98/rc/pc/code_assistant/98c01d1c61c645778cdcb4e529a8882e~tplv-a9rns2rl98-image.image?rcl=20251013164023970D359F3CD4DADE7A59&amp;rk3s=8e244e95&amp;rrcfp=2609e108&amp;x-expires=1760949627&amp;x-signature=zU77Hv%2BXz8IMMwolvvRh7iQmasM%3D" alt="抖音图文设计" class="w-full h-48 object-cover transition-transform duration-500 group-hover:scale-110">
+                        </div>
+                        <div class="p-3">
+                            <h3 class="text-md font-semibold mb-1">抖音图文设计 1</h3>
+                            <p class="text-gray-600 text-xs">作品描述</p>
+                        </div>
+                    </div>
+                    
+                    <!-- 抖音图文设计2 -->
+                    <div class="work-card bg-white rounded-lg overflow-hidden shadow-sm group">
+                        <div class="relative overflow-hidden">
+                            <img src="https://p3-flow-imagex-sign.byteimg.com/tos-cn-i-a9rns2rl98/rc/pc/super_tool/19abb3f8a92e47949319b2c891001bc3~tplv-a9rns2rl98-image.image?rcl=20251011114612D6F40923774973B0CC79&amp;rk3s=8e244e95&amp;rrcfp=f06b921b&amp;x-expires=1762746398&amp;x-signature=rZWgL3A83ZsR8JdE68SIeiWy%2FbI%3D" alt="抖音图文设计" class="w-full h-48 object-cover transition-transform duration-500 group-hover:scale-110">
+                        </div>
+                        <div class="p-3">
+                            <h3 class="text-md font-semibold mb-1">抖音图文设计 2</h3>
+                            <p class="text-gray-600 text-xs">作品描述</p>
+                        </div>
+                    </div>
+                    
+                    <!-- 抖音图文设计3 -->
+                    <div class="work-card bg-white rounded-lg overflow-hidden shadow-sm group">
+                        <div class="relative overflow-hidden">
+                            <img src="https://p3-flow-imagex-sign.byteimg.com/tos-cn-i-a9rns2rl98/rc/pc/code_assistant/29449b1a007b4221921bce21be1e4dd2~tplv-a9rns2rl98-image.image?rcl=20251013163918FB6EAC6B654496E25F85&amp;rk3s=8e244e95&amp;rrcfp=2609e108&amp;x-expires=1760949563&amp;x-signature=B6ka6pttP6CFMPh%2FXj8k6xP63i4%3D" alt="抖音图文设计" class="w-full h-48 object-cover transition-transform duration-500 group-hover:scale-110">
+                        </div>
+                        <div class="p-3">
+                            <h3 class="text-md font-semibold mb-1">抖音图文设计 3</h3>
+                            <p class="text-gray-600 text-xs">作品描述</p>
+                        </div>
+                    </div>
+                    
+                    <!-- 抖音图文设计4 -->
+                    <div class="work-card bg-white rounded-lg overflow-hidden shadow-sm group">
+                        <div class="relative overflow-hidden">
+                            <img src="https://p3-flow-imagex-sign.byteimg.com/tos-cn-i-a9rns2rl98/rc/pc/code_assistant/520c2cb70ce74a5e873ecc213be07d49~tplv-a9rns2rl98-image.image?rcl=20251013162436B2ED504F4E124AF921CD&amp;rk3s=8e244e95&amp;rrcfp=2609e108&amp;x-expires=1760948681&amp;x-signature=mHPZrZeJjztdaF94jLEBa09ZNyE%3D" alt="抖音图文设计" class="w-full h-48 object-cover transition-transform duration-500 group-hover:scale-110">
+                        </div>
+                        <div class="p-3">
+                            <h3 class="text-md font-semibold mb-1">抖音图文设计 4</h3>
+                            <p class="text-gray-600 text-xs">作品描述</p>
+                        </div>
+                    </div>
+                    
+                    <!-- 抖音图文设计5 -->
+                    <div class="work-card bg-white rounded-lg overflow-hidden shadow-sm group">
+                        <div class="relative overflow-hidden">
+                            <img src="https://p3-flow-imagex-sign.byteimg.com/tos-cn-i-a9rns2rl98/rc/pc/code_assistant/574e47a1407b4221921bce21be1e4dd2~tplv-a9rns2rl98-image.image?rcl=20251013163918FB6EAC6B654496E25F85&amp;rk3s=8e244e95&amp;rrcfp=2609e108&amp;x-expires=1760949563&amp;x-signature=B6ka6pttP6CFMPh%2FXj8k6xP63i4%3D" alt="抖音图文设计" class="w-full h-48 object-cover transition-transform duration-500 group-hover:scale-110">
+                        </div>
+                        <div class="p-3">
+                            <h3 class="text-md font-semibold mb-1">抖音图文设计 5</h3>
+                            <p class="text-gray-600 text-xs">作品描述</p>
+                        </div>
+                    </div>
+                    
+                    <!-- 抖音图文设计6 -->
+                    <div class="work-card bg-white rounded-lg overflow-hidden shadow-sm group">
+                        <div class="relative overflow-hidden">
+                            <img src="https://p3-flow-imagex-sign.byteimg.com/tos-cn-i-a9rns2rl98/rc/pc/code_assistant/90032b8a3adf4b169b1957cdb1e6afaf~tplv-a9rns2rl98-image.image?rcl=20251013164250F4993424CAEF794F6D63&amp;rk3s=8e244e95&amp;rrcfp=2609e108&amp;x-expires=1760949774&amp;x-signature=eeDe93hSK4rMUlCMb%2Bw0fxqLCuM%3D" alt="抖音图文设计" class="w-full h-48 object-cover transition-transform duration-500 group-hover:scale-110">
+                        </div>
+                        <div class="p-3">
+                            <h3 class="text-md font-semibold mb-1">抖音图文设计 6</h3>
+                            <p class="text-gray-600 text-xs">作品描述</p>
+                        </div>
+                    </div>
+                    
+                    <!-- 抖音图文设计7 -->
+                    <div class="work-card bg-white rounded-lg overflow-hidden shadow-sm group">
+                        <div class="relative overflow-hidden">
+                            <img src="https://p9-flow-imagex-sign.byteimg.com/tos-cn-i-a9rns2rl98/rc/pc/code_assistant/98c01d1c61c645778cdcb4e529a8882e~tplv-a9rns2rl98-image.image?rcl=20251013164023970D359F3CD4DADE7A59&amp;rk3s=8e244e95&amp;rrcfp=2609e108&amp;x-expires=1760949627&amp;x-signature=zU77Hv%2BXz8IMMwolvvRh7iQmasM%3D" alt="抖音图文设计" class="w-full h-48 object-cover transition-transform duration-500 group-hover:scale-110">
+                        </div>
+                        <div class="p-3">
+                            <h3 class="text-md font-semibold mb-1">抖音图文设计 7</h3>
+                            <p class="text-gray-600 text-xs">作品描述</p>
+                        </div>
+                    </div>
+                    
+                    <!-- 抖音图文设计8 -->
+                    <div class="work-card bg-white rounded-lg overflow-hidden shadow-sm group">
+                        <div class="relative overflow-hidden">
+                            <img src="https://p3-flow-imagex-sign.byteimg.com/tos-cn-i-a9rns2rl98/rc/pc/super_tool/19abb3f8a92e47949319b2c891001bc3~tplv-a9rns2rl98-image.image?rcl=20251011114612D6F40923774973B0CC79&amp;rk3s=8e244e95&amp;rrcfp=f06b921b&amp;x-expires=1762746398&amp;x-signature=rZWgL3A83ZsR8JdE68SIeiWy%2FbI%3D" alt="抖音图文设计" class="w-full h-48 object-cover transition-transform duration-500 group-hover:scale-110">
+                        </div>
+                        <div class="p-3">
+                            <h3 class="text-md font-semibold mb-1">抖音图文设计 8</h3>
+                            <p class="text-gray-600 text-xs">作品描述</p>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </section>
+
+        <!-- 详情图设计 -->
+        <section id="detail-image" class="py-16">
+            <div class="container mx-auto px-4">
+                <h2 class="text-2xl md:text-3xl font-bold mb-8 text-center">详情图设计</h2>
+                <div class="grid grid-cols-1 sm:grid-cols-2 md:grid-cols-4 lg:grid-cols-4 xl:grid-cols-4 gap-4">
+                    <!-- 详情图设计1 -->
+                    <div class="work-card detail-card bg-white rounded-lg overflow-hidden shadow-sm group">
+                        <div class="relative overflow-hidden h-[36rem]">
+                            <div class="img-container h-full w-full">
+                                <img src="https://p3-flow-imagex-sign.byteimg.com/tos-cn-i-a9rns2rl98/rc/pc/code_assistant/2499bb33311e4bb49b2b4ac255a1b9ed~tplv-a9rns2rl98-image.image?lk3s=8e244e95&amp;rcl=20260323173751574D28A92143FEF2F5C8&amp;rrcfp=e75484ac&amp;x-expires=1774863472&amp;x-signature=T%2Fh2TUpP5h3YxBM0Za2piBb1qkI%3D" alt="详情图设计" class="transition-transform duration-500 group-hover:scale-110">
+                            </div>
+                        </div>
+                        <div class="p-3">
+                            <h3 class="text-md font-semibold mb-1">详情图设计 1</h3>
+                            <p class="text-gray-600 text-xs">作品描述</p>
+                        </div>
+                    </div>
+                    
+                    <!-- 详情图设计2 -->
+                    <div class="work-card detail-card bg-white rounded-lg overflow-hidden shadow-sm group">
+                        <div class="relative overflow-hidden h-[36rem]">
+                            <div class="img-container h-full w-full">
+                                <img src="https://p3-flow-imagex-sign.byteimg.com/tos-cn-i-a9rns2rl98/rc/pc/code_assistant/218485eec90f49889907b2a6a1212e36~tplv-a9rns2rl98-image.image?lk3s=8e244e95&amp;rcl=20260323173803F5B4958CD5068A09A908&amp;rrcfp=e75484ac&amp;x-expires=1774863483&amp;x-signature=bQ%2BqUKozT0Ib9GwjTVnbMcCYBLg%3D" alt="详情图设计" class="transition-transform duration-500 group-hover:scale-110">
+                            </div>
+                        </div>
+                        <div class="p-3">
+                            <h3 class="text-md font-semibold mb-1">详情图设计 2</h3>
+                            <p class="text-gray-600 text-xs">作品描述</p>
+                        </div>
+                    </div>
+                    
+                    <!-- 详情图设计3 -->
+                    <div class="work-card detail-card bg-white rounded-lg overflow-hidden shadow-sm group">
+                        <div class="relative overflow-hidden h-[36rem]">
+                            <div class="img-container h-full w-full">
+                                <img src="https://p9-flow-imagex-sign.byteimg.com/tos-cn-i-a9rns2rl98/rc/pc/code_assistant/98c01d1c61c645778cdcb4e529a8882e~tplv-a9rns2rl98-image.image?rcl=20251013164023970D359F3CD4DADE7A59&amp;rk3s=8e244e95&amp;rrcfp=2609e108&amp;x-expires=1760949627&amp;x-signature=zU77Hv%2BXz8IMMwolvvRh7iQmasM%3D" alt="详情图设计" class="transition-transform duration-500 group-hover:scale-110">
+                            </div>
+                        </div>
+                        <div class="p-3">
+                            <h3 class="text-md font-semibold mb-1">详情图设计 3</h3>
+                            <p class="text-gray-600 text-xs">作品描述</p>
+                        </div>
+                    </div>
+                    
+                    <!-- 详情图设计4 -->
+                    <div class="work-card detail-card bg-white rounded-lg overflow-hidden shadow-sm group">
+                        <div class="relative overflow-hidden h-[36rem]">
+                            <div class="img-container h-full w-full">
+                                <img src="https://p3-flow-imagex-sign.byteimg.com/tos-cn-i-a9rns2rl98/rc/pc/super_tool/19abb3f8a92e47949319b2c891001bc3~tplv-a9rns2rl98-image.image?rcl=20251011114612D6F40923774973B0CC79&amp;rk3s=8e244e95&amp;rrcfp=f06b921b&amp;x-expires=1762746398&amp;x-signature=rZWgL3A83ZsR8JdE68SIeiWy%2FbI%3D" alt="详情图设计" class="transition-transform duration-500 group-hover:scale-110">
+                            </div>
+                        </div>
+                        <div class="p-3">
+                            <h3 class="text-md font-semibold mb-1">详情图设计 4</h3>
+                            <p class="text-gray-600 text-xs">作品描述</p>
+                        </div>
+                    </div>
+                    
+                    <!-- 详情图设计5 -->
+                    <div class="work-card detail-card bg-white rounded-lg overflow-hidden shadow-sm group">
+                        <div class="relative overflow-hidden h-[36rem]">
+                            <div class="img-container h-full w-full">
+                                <img src="https://p3-flow-imagex-sign.byteimg.com/tos-cn-i-a9rns2rl98/rc/pc/code_assistant/29449b1a007b4221921bce21be1e4dd2~tplv-a9rns2rl98-image.image?rcl=20251013163918FB6EAC6B654496E25F85&amp;rk3s=8e244e95&amp;rrcfp=2609e108&amp;x-expires=1760949563&amp;x-signature=B6ka6pttP6CFMPh%2FXj8k6xP63i4%3D" alt="详情图设计" class="transition-transform duration-500 group-hover:scale-110">
+                            </div>
+                        </div>
+                        <div class="p-3">
+                            <h3 class="text-md font-semibold mb-1">详情图设计 5</h3>
+                            <p class="text-gray-600 text-xs">作品描述</p>
+                        </div>
+                    </div>
+                    
+                    <!-- 详情图设计6 -->
+                    <div class="work-card detail-card bg-white rounded-lg overflow-hidden shadow-sm group">
+                        <div class="relative overflow-hidden h-[36rem]">
+                            <div class="img-container h-full w-full">
+                                <img src="https://p3-flow-imagex-sign.byteimg.com/tos-cn-i-a9rns2rl98/rc/pc/code_assistant/520c2cb70ce74a5e873ecc213be07d49~tplv-a9rns2rl98-image.image?rcl=20251013162436B2ED504F4E124AF921CD&amp;rk3s=8e244e95&amp;rrcfp=2609e108&amp;x-expires=1760948681&amp;x-signature=mHPZrZeJjztdaF94jLEBa09ZNyE%3D" alt="详情图设计" class="transition-transform duration-500 group-hover:scale-110">
+                            </div>
+                        </div>
+                        <div class="p-3">
+                            <h3 class="text-md font-semibold mb-1">详情图设计 6</h3>
+                            <p class="text-gray-600 text-xs">作品描述</p>
+                        </div>
+                    </div>
+                    
+                    <!-- 详情图设计7 -->
+                    <div class="work-card detail-card bg-white rounded-lg overflow-hidden shadow-sm group">
+                        <div class="relative overflow-hidden h-[36rem]">
+                            <div class="img-container h-full w-full">
+                                <img src="https://p3-flow-imagex-sign.byteimg.com/tos-cn-i-a9rns2rl98/rc/pc/code_assistant/574e47a1407b4221921bce21be1e4dd2~tplv-a9rns2rl98-image.image?rcl=20251013163918FB6EAC6B654496E25F85&amp;rk3s=8e244e95&amp;rrcfp=2609e108&amp;x-expires=1760949563&amp;x-signature=B6ka6pttP6CFMPh%2FXj8k6xP63i4%3D" alt="详情图设计" class="transition-transform duration-500 group-hover:scale-110">
+                            </div>
+                        </div>
+                        <div class="p-3">
+                            <h3 class="text-md font-semibold mb-1">详情图设计 7</h3>
+                            <p class="text-gray-600 text-xs">作品描述</p>
+                        </div>
+                    </div>
+                    
+                    <!-- 详情图设计8 -->
+                    <div class="work-card detail-card bg-white rounded-lg overflow-hidden shadow-sm group">
+                        <div class="relative overflow-hidden h-[36rem]">
+                            <div class="img-container h-full w-full">
+                                <img src="https://p3-flow-imagex-sign.byteimg.com/tos-cn-i-a9rns2rl98/rc/pc/code_assistant/90032b8a3adf4b169b1957cdb1e6afaf~tplv-a9rns2rl98-image.image?rcl=20251013164250F4993424CAEF794F6D63&amp;rk3s=8e244e95&amp;rrcfp=2609e108&amp;x-expires=1760949774&amp;x-signature=eeDe93hSK4rMUlCMb%2Bw0fxqLCuM%3D" alt="详情图设计" class="transition-transform duration-500 group-hover:scale-110">
+                            </div>
+                        </div>
+                        <div class="p-3">
+                            <h3 class="text-md font-semibold mb-1">详情图设计 8</h3>
+                            <p class="text-gray-600 text-xs">作品描述</p>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </section>
+    </main>
+
+    <!-- 页脚 -->
+    <footer class="bg-primary text-white py-8">
+        <div class="container mx-auto px-4 text-center">
+            <p>© 2025 设计师作品集. All Rights Reserved.</p>
+        </div>
+    </footer>
+
+    <script>
+        // 导航栏滚动效果
+        window.addEventListener('scroll', function() {
+            const navbar = document.getElementById('navbar');
+            if (window.scrollY > 50) {
+                navbar.classList.add('bg-white', 'shadow-md');
+                navbar.classList.remove('bg-opacity-95');
+            } else {
+                navbar.classList.remove('shadow-md');
+                navbar.classList.add('bg-opacity-95');
+            }
+        });
+
+        // 移动端菜单切换
+        document.getElementById('menu-toggle').addEventListener('click', function() {
+            const mobileMenu = document.getElementById('mobile-menu');
+            mobileMenu.classList.toggle('hidden');
+        });
+
+        // 平滑滚动
+        document.querySelectorAll('a[href^="#"]').forEach(anchor => {
+            anchor.addEventListener('click', function (e) {
+                e.preventDefault();
+                document.querySelector(this.getAttribute('href')).scrollIntoView({
+                    behavior: 'smooth'
+                });
+                // 如果是移动端，点击后关闭菜单
+                const mobileMenu = document.getElementById('mobile-menu');
+                if (!mobileMenu.classList.contains('hidden')) {
+                    mobileMenu.classList.add('hidden');
+                }
+            });
+        });
+    </script>
+
+</body>
+</html>
